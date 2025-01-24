@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "369636230123",
+    "firebase_url": "https://game-launcher-1915c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "game-launcher-1915c",
+    "storage_bucket": "game-launcher-1915c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369636230123:android:32c1c1b7b9340c585fcfae",
+        "android_client_info": {
+          "package_name": "com.example.game_launcher"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYDgj9H3wYkkNn7lLL_qUZ6BMHGjse-Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
