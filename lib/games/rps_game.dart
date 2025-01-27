@@ -16,9 +16,9 @@ class RpsGameScreen extends StatefulWidget {
 
 class _RpsGameScreenState extends State<RpsGameScreen> {
   final List<Map<String, String>> choices = [
-    {'name': 'Rock', 'image': 'assets/images/rock.JPG'},
-    {'name': 'Paper', 'image': 'assets/images/paper.JPG'},
-    {'name': 'Scissors', 'image': 'assets/images/scissors.JPG'},
+    {'name': 'Rock', 'image': 'assets/images/rock.png'},
+    {'name': 'Paper', 'image': 'assets/images/paper.png'},
+    {'name': 'Scissors', 'image': 'assets/images/scissors.png'},
   ];
 
   bool _isRunning = false;
