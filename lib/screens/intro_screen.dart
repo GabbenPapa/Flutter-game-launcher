@@ -33,13 +33,15 @@ class IntroScreenState extends State<IntroScreen> {
             children: [
               _buildPageContent(
                   "Welcome!",
-                  "This is a brief description of the app.",
+                  "Welcome to Game Launcher! A place where all your games are just a tap away.",
                   "assets/images/intro_screen.webp"),
               _buildPageContent(
                   "Simple Games",
-                  "Try out a variety of simple games!",
+                  "Discover simple yet challenging mini-games, and invite your friends to join the fun!",
                   "assets/images/intro_screen.webp"),
-              _buildPageContent("Get Started", "Swipe ahead and get started!",
+              _buildPageContent(
+                  "Get Started",
+                  "Start playing now and collect victories – the fun is just a click away!",
                   "assets/images/intro_screen.webp"),
             ],
           ),
@@ -100,27 +102,40 @@ class IntroScreenState extends State<IntroScreen> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.3),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  description,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 20),
-          Text(
-            description,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+        ),
       ),
     );
   }
