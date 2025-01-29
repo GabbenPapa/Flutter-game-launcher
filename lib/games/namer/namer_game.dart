@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../components/cards.dart';
 import '../../providers/game_provider.dart';
 import '../../providers/namer_provider.dart';
+import '../../theme/themes.dart';
 import 'namer_favorite.dart';
 import 'namer_history.dart';
 
@@ -27,6 +28,9 @@ class _NamerGameScreenState extends State<NamerGameScreen> {
       listen: false,
     ).findById(gameId);
 
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     final namer = Provider.of<Namer>(context);
 
     Widget page = const Placeholder();
@@ -45,38 +49,46 @@ class _NamerGameScreenState extends State<NamerGameScreen> {
       appBar: AppBar(
         title: Text(loadedGames.title),
       ),
-      body: Row(
+      body: Stack(
         children: [
-          SafeArea(
-            child: NavigationRail(
-              extended: false,
-              destinations: [
-                NavigationRailDestination(
-                  icon: const Icon(Icons.home),
-                  label: Text(AppLocalizations.of(context)!.home),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.favorite),
-                  label: Text(AppLocalizations.of(context)!.favorites),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.history),
-                  label: Text(AppLocalizations.of(context)!.history),
-                ),
-              ],
-              selectedIndex: namer.selectedPageIndex,
-              onDestinationSelected: (value) {
-                setState(() {
-                  namer.selectedPageIndex = value;
-                });
-              },
+          Container(
+            decoration: BoxDecoration(
+              gradient: customTheme?.backgroundGradient,
             ),
           ),
-          Expanded(
-            child: Container(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: page,
-            ),
+          Row(
+            children: [
+              SafeArea(
+                child: NavigationRail(
+                  extended: false,
+                  destinations: [
+                    NavigationRailDestination(
+                      icon: const Icon(Icons.home),
+                      label: Text(AppLocalizations.of(context)!.home),
+                    ),
+                    NavigationRailDestination(
+                      icon: const Icon(Icons.favorite),
+                      label: Text(AppLocalizations.of(context)!.favorites),
+                    ),
+                    NavigationRailDestination(
+                      icon: const Icon(Icons.history),
+                      label: Text(AppLocalizations.of(context)!.history),
+                    ),
+                  ],
+                  selectedIndex: namer.selectedPageIndex,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      namer.selectedPageIndex = value;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  child: page,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -96,6 +108,9 @@ class _GeneratorPageState extends State<GeneratorPage> {
   Widget build(BuildContext context) {
     final namer = Provider.of<Namer>(context);
     final namerFavorite = Provider.of<NamerFavoriteProvider>(context);
+
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
 
     var pair = namer.current;
     IconData newIcon;
@@ -119,15 +134,23 @@ class _GeneratorPageState extends State<GeneratorPage> {
 
                   setState(() {});
                 },
-                icon: Icon(newIcon),
-                label: Text(AppLocalizations.of(context)!.like),
+                icon: Icon(newIcon, color: customTheme?.cardTextColor),
+                label: Text(
+                  AppLocalizations.of(context)!.like,
+                  style: TextStyle(
+                    color: customTheme?.cardTextColor ?? Colors.black,
+                  ),
+                ),
               ),
               const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   namer.getNext(context);
                 },
-                child: Text(AppLocalizations.of(context)!.next),
+                child: Text(AppLocalizations.of(context)!.next,
+                    style: TextStyle(
+                      color: customTheme?.cardTextColor ?? Colors.black,
+                    )),
               ),
             ],
           ),

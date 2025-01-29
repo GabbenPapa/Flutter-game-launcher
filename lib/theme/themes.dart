@@ -7,6 +7,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
   final Color? borderColor;
   final Color? dartsTextColor;
   final Color? dartsBGColor;
+  final Color? cardBackgroundColor;
+  final Color? cardTextColor;
 
   const CustomThemeExtension({
     this.backgroundGradient,
@@ -15,6 +17,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     this.borderColor,
     this.dartsTextColor,
     this.dartsBGColor,
+    this.cardBackgroundColor,
+    this.cardTextColor,
   });
 
   @override
@@ -25,6 +29,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? borderColor,
     Color? dartsTextColor,
     Color? dartsBGColor,
+    Color? cardBackgroundColor,
+    Color? cardTextColor,
   }) {
     return CustomThemeExtension(
       backgroundGradient: backgroundGradient ?? this.backgroundGradient,
@@ -33,6 +39,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       borderColor: borderColor ?? this.borderColor,
       dartsTextColor: dartsTextColor ?? this.dartsTextColor,
       dartsBGColor: dartsBGColor ?? this.dartsBGColor,
+      cardBackgroundColor: cardBackgroundColor ?? this.cardBackgroundColor,
+      cardTextColor: cardTextColor ?? this.cardTextColor,
     );
   }
 
@@ -48,6 +56,9 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       borderColor: Color.lerp(borderColor, other.borderColor, t),
       dartsTextColor: Color.lerp(dartsTextColor, other.dartsTextColor, t),
       dartsBGColor: Color.lerp(dartsBGColor, other.dartsBGColor, t),
+      cardBackgroundColor:
+          Color.lerp(cardBackgroundColor, other.cardBackgroundColor, t),
+      cardTextColor: Color.lerp(cardTextColor, other.cardTextColor, t),
     );
   }
 }
@@ -73,6 +84,8 @@ ThemeData lightMode = ThemeData(
       borderColor: Colors.grey,
       dartsTextColor: Colors.black,
       dartsBGColor: Colors.white,
+      cardBackgroundColor: Colors.white,
+      cardTextColor: Colors.black,
     ),
   ],
 );
@@ -98,6 +111,8 @@ ThemeData darkMode = ThemeData(
       borderColor: Colors.white,
       dartsTextColor: Colors.white,
       dartsBGColor: Colors.grey.shade800,
+      cardBackgroundColor: Colors.grey.shade800,
+      cardTextColor: Colors.white,
     ),
   ],
 );

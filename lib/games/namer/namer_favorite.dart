@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../providers/namer_favorites_provider.dart';
+import '../../theme/themes.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -24,7 +25,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     final namer = Provider.of<NamerFavoriteProvider>(context);
 
     return FutureBuilder(
@@ -42,30 +45,37 @@ class _FavoritesPageState extends State<FavoritesPage> {
           }
 
           return Scaffold(
-            backgroundColor: theme.colorScheme.primaryContainer,
-            body: ListView(
+            body: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    AppLocalizations.of(context)!
-                        .youHaveFavorites(namer.favorites.length),
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: customTheme?.backgroundGradient,
                   ),
                 ),
-                for (var pair in namer.favorites)
-                  ListTile(
-                    leading: IconButton(
-                      icon: const Icon(
-                        Icons.delete_outline,
-                        semanticLabel: 'Delete',
+                ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .youHaveFavorites(namer.favorites.length),
                       ),
-                      color: theme.colorScheme.primary,
-                      onPressed: () {
-                        namer.removeFavorite(pair.id);
-                      },
                     ),
-                    title: Text(pair.favoriteItem),
-                  ),
+                    for (var pair in namer.favorites)
+                      ListTile(
+                        leading: IconButton(
+                          icon: const Icon(
+                            Icons.delete_outline,
+                            semanticLabel: 'Delete',
+                          ),
+                          onPressed: () {
+                            namer.removeFavorite(pair.id);
+                          },
+                        ),
+                        title: Text(pair.favoriteItem),
+                      ),
+                  ],
+                ),
               ],
             ),
           );

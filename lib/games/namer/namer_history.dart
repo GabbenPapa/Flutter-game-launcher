@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../providers/namer_history_provider.dart';
+import '../../theme/themes.dart';
 
 class HistoryList extends StatefulWidget {
   const HistoryList({super.key});
@@ -16,7 +17,8 @@ class _HistoryListState extends State<HistoryList> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
 
     return FutureBuilder(
       future: _isFirstLoad
@@ -40,28 +42,35 @@ class _HistoryListState extends State<HistoryList> {
           }
 
           return Scaffold(
-            backgroundColor: theme.colorScheme.primaryContainer,
-            body: ListView(
+            body: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    AppLocalizations.of(context)!
-                        .youHaveHistory(namer.history.length),
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: customTheme?.backgroundGradient,
                   ),
                 ),
-                for (var item in namer.history)
-                  ListTile(
-                    leading: IconButton(
-                      icon: const Icon(Icons.delete_outline,
-                          semanticLabel: 'Delete'),
-                      color: theme.colorScheme.primary,
-                      onPressed: () async {
-                        await namer.removeHistory(item.id);
-                      },
+                ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .youHaveHistory(namer.history.length),
+                      ),
                     ),
-                    title: Text(item.historyItem),
-                  ),
+                    for (var item in namer.history)
+                      ListTile(
+                        leading: IconButton(
+                          icon: const Icon(Icons.delete_outline,
+                              semanticLabel: 'Delete'),
+                          onPressed: () async {
+                            await namer.removeHistory(item.id);
+                          },
+                        ),
+                        title: Text(item.historyItem),
+                      ),
+                  ],
+                ),
               ],
             ),
           );
