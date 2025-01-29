@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../providers/intro_provider.dart';
+import '../theme/themes.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -19,6 +20,9 @@ class IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -70,21 +74,31 @@ class IntroScreenState extends State<IntroScreen> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(3, (index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                    width: _currentIndex == index ? 12.0 : 8.0,
-                    height: _currentIndex == index ? 12.0 : 8.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _currentIndex == index ? Colors.blue : Colors.grey,
-                    ),
-                  );
-                }),
+              Container(
+                width: 100,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(3, (index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                      width: _currentIndex == index ? 12.0 : 8.0,
+                      height: _currentIndex == index ? 12.0 : 8.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _currentIndex == index
+                            ? customTheme?.selectedColor
+                            : customTheme?.unselectedColor,
+                      ),
+                    );
+                  }),
+                ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
             ],
           ),
         ],
