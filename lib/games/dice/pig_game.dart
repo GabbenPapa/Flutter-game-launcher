@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../providers/game_provider.dart';
+import '../../theme/themes.dart';
 
 class PigGameScreen extends StatefulWidget {
   static const routeName = '/pig_game';
@@ -83,7 +84,7 @@ class _PigGameScreenState extends State<PigGameScreen> {
           content: Text(
             AppLocalizations.of(context)!.winnerMessage(activePlayer + 1),
           ),
-          backgroundColor: Colors.pink,
+          // backgroundColor: Colors.pink,
           actions: [
             TextButton(
               style: ButtonStyle(
@@ -110,6 +111,9 @@ class _PigGameScreenState extends State<PigGameScreen> {
       listen: false,
     ).findById(gameId);
 
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedGames.title),
@@ -123,13 +127,8 @@ class _PigGameScreenState extends State<PigGameScreen> {
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.red, Colors.purple],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.0, 1.0],
-              ),
+            decoration: BoxDecoration(
+              gradient: customTheme?.backgroundGradient,
             ),
           ),
           Column(
@@ -146,8 +145,8 @@ class _PigGameScreenState extends State<PigGameScreen> {
                           height: 200,
                           child: Card(
                             color: activePlayer == 0
-                                ? Colors.pink[100]
-                                : Colors.pink[400],
+                                ? customTheme?.selectedColor ?? Colors.orange
+                                : customTheme?.unselectedColor ?? Colors.white,
                             elevation: 4,
                             child: Padding(
                               padding: const EdgeInsets.all(16.0),
@@ -195,8 +194,8 @@ class _PigGameScreenState extends State<PigGameScreen> {
                           height: 200,
                           child: Card(
                             color: activePlayer != 0
-                                ? Colors.pink[100]
-                                : Colors.pink[400],
+                                ? customTheme?.selectedColor ?? Colors.orange
+                                : customTheme?.unselectedColor ?? Colors.white,
                             elevation: 4,
                             child: Padding(
                               padding: const EdgeInsets.all(16.0),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import '../../providers/game_provider.dart';
+import '../../theme/themes.dart';
 
 class DiceGameScreen extends StatefulWidget {
   static const routeName = '/dice_game';
@@ -69,6 +70,9 @@ class DiceGameScreenState extends State<DiceGameScreen> {
       listen: false,
     ).findById(gameId);
 
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedGames.title),
@@ -76,13 +80,8 @@ class DiceGameScreenState extends State<DiceGameScreen> {
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.red, Colors.purple],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.0, 1.0],
-              ),
+            decoration: BoxDecoration(
+              gradient: customTheme?.backgroundGradient,
             ),
           ),
           Column(
