@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../providers/game_provider.dart';
+import '../../providers/game_provider.dart';
 
 class RpsGameScreen extends StatefulWidget {
   static const routeName = '/rps_game';

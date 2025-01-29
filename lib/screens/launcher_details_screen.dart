@@ -10,7 +10,7 @@ import '../games/dice/dice_game.dart';
 import '../games/dice/pig_game.dart';
 import '../games/fun_o_meter/fun_o_meter.dart';
 import '../games/namer/namer_game.dart';
-import '../games/rps_game.dart';
+import '../games/rps/rps_game.dart';
 import '../theme/themes.dart';
 
 class GameDetailScreen extends StatelessWidget {
