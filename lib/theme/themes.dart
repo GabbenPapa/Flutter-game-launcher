@@ -62,13 +62,13 @@ ThemeData lightMode = ThemeData(
   ),
 ).copyWith(
   extensions: [
-    const CustomThemeExtension(
-      backgroundGradient: LinearGradient(
+    CustomThemeExtension(
+      backgroundGradient: const LinearGradient(
         colors: [Colors.blueGrey, Colors.white],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
-      selectedColor: Colors.orange,
+      selectedColor: Colors.blue[800],
       unselectedColor: Colors.white,
       borderColor: Colors.grey,
       dartsTextColor: Colors.black,

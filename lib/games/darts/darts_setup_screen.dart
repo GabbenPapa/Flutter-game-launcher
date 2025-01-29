@@ -224,7 +224,7 @@ class DartsSetupScreenState extends State<DartsSetupScreen> {
                     border: Border.all(
                       style: BorderStyle.solid,
                       color: index == selectedValue - 1
-                          ? Colors.orange
+                          ? customTheme?.selectedColor ?? Colors.orange
                           : Colors.transparent,
                       width: 2,
                     ),
@@ -237,7 +237,7 @@ class DartsSetupScreenState extends State<DartsSetupScreen> {
                       style: TextStyle(
                         fontSize: 24,
                         color: index == selectedValue - 1
-                            ? Colors.orange
+                            ? customTheme?.selectedColor
                             : customTheme?.dartsTextColor,
                         fontWeight: index == selectedValue - 1
                             ? FontWeight.bold

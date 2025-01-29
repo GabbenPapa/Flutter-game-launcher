@@ -298,9 +298,9 @@ class DartsGameScreenState extends State<DartsGameScreen> {
                       children: [
                         _playersTable(),
                         const SizedBox(height: 16.0),
-                        _scoreCard(theme),
+                        _scoreCard(),
                         const SizedBox(height: 16.0),
-                        _setsAndLegs(theme),
+                        _setsAndLegs(),
                       ],
                     ),
                   ),
@@ -339,6 +339,9 @@ class DartsGameScreenState extends State<DartsGameScreen> {
   }
 
   Widget _playersTable() {
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(
@@ -352,8 +355,9 @@ class DartsGameScreenState extends State<DartsGameScreen> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color:
-                        index == currentPlayer ? Colors.orange : Colors.white,
+                    color: index == currentPlayer
+                        ? customTheme?.selectedColor
+                        : Colors.white,
                   ),
                 ),
                 onTap: () {
@@ -378,8 +382,9 @@ class DartsGameScreenState extends State<DartsGameScreen> {
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
-                      color:
-                          index == currentPlayer ? Colors.orange : Colors.white,
+                      color: index == currentPlayer
+                          ? customTheme?.selectedColor
+                          : Colors.white,
                     ),
                   ),
                 ),
@@ -395,7 +400,7 @@ class DartsGameScreenState extends State<DartsGameScreen> {
     );
   }
 
-  Widget _scoreCard(theme) {
+  Widget _scoreCard() {
     final theme = Theme.of(context);
     final customTheme = theme.extension<CustomThemeExtension>();
 
@@ -410,16 +415,16 @@ class DartsGameScreenState extends State<DartsGameScreen> {
           Text(
             playerNames[currentPlayer],
             style: theme.textTheme.titleLarge?.copyWith(
-              color: Colors.orange,
+              color: customTheme?.selectedColor,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'Score: ${playerScores[currentPlayer]}',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.bold,
-              color: Colors.orange,
+              color: customTheme?.selectedColor,
             ),
           ),
         ],
@@ -427,7 +432,7 @@ class DartsGameScreenState extends State<DartsGameScreen> {
     );
   }
 
-  Widget _setsAndLegs(theme) {
+  Widget _setsAndLegs() {
     final theme = Theme.of(context);
     final customTheme = theme.extension<CustomThemeExtension>();
     return Row(

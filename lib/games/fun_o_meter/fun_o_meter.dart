@@ -101,7 +101,7 @@ class _FunOMeterState extends State<FunOMeter> {
                 min: 0,
                 max: 100,
                 divisions: 100,
-                activeColor: Colors.orange,
+                activeColor: customTheme?.selectedColor,
                 label: _pointerValue.toStringAsFixed(0),
                 onChanged: (value) {
                   setState(() {
