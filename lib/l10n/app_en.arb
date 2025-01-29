@@ -55,6 +55,8 @@
 		"yes" : "Yes",
 		"no" : "No",
 
+		"fun_o_meter" : "Fun-o-meter",
+
 		"game_darts_title": "Darts",
 		"game_darts_description" : "Hit the bullseye!",
 		"game_darts_long_description": "Darts is a popular game where players aim to throw small, pointed missiles at a circular target known as a dartboard. The game can be played in various formats, with the most common being 301 and 501. In these modes, players start with a score of 301 or 501, and the goal is to reduce the score to exactly zero by subtracting the points scored with each throw. To finish, the player must hit a double. Cricket is another fun variation where players aim to close specific numbers on the board (15–20) and the bullseye before their opponent. Clock is a game where players must hit each number on the dartboard in numerical order, starting from 1 and finishing with the bullseye. Implementing these modes will allow for exciting two-player matches, and adding statistics can enhance the experience by tracking accuracy, high scores, and the number of darts thrown. This adds depth to gameplay, allowing players to monitor their performance over time.",

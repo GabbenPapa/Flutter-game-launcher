@@ -105,7 +105,7 @@ class DartsGameScreenState extends State<DartsGameScreen> {
     if (enteredPoints > 180) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(AppLocalizations.of(context)!.invalidPoints),
+          content: Text(AppLocalizations.of(context)!.fun_o_meter),
         ),
       );
       _focusNode.requestFocus();

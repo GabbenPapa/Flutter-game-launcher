@@ -54,6 +54,8 @@
 		"exitMessage" : "Biztosan ki akarsz lépni?",
 		"yes" : "Igen",
 		"no" : "Nem",
+		
+		"Fun-o-meter" : "Mulatság mérő",
 
 		"game_darts_title": "Darts",
 		"game_darts_description" : "Találd el a célpontot!",

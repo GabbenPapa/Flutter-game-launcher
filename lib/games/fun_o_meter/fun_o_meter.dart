@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../providers/game_provider.dart';
 import '../../theme/themes.dart';
@@ -42,20 +43,48 @@ class _FunOMeterState extends State<FunOMeter> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(AppLocalizations.of(context)!.fun_o_meter,
+                  style: theme.textTheme.headlineLarge),
+              const SizedBox(height: 50),
               SfRadialGauge(
                 axes: <RadialAxis>[
                   RadialAxis(
+                    startAngle: 180,
+                    endAngle: 0,
                     minimum: 0,
-                    maximum: 100,
+                    maximum: 101,
+                    ranges: <GaugeRange>[
+                      GaugeRange(
+                        startValue: 0,
+                        endValue: 33,
+                        color: Colors.red,
+                        startWidth: 10,
+                        endWidth: 10,
+                      ),
+                      GaugeRange(
+                        startValue: 33,
+                        endValue: 66,
+                        color: Colors.yellow,
+                        startWidth: 10,
+                        endWidth: 10,
+                      ),
+                      GaugeRange(
+                        startValue: 66,
+                        endValue: 101,
+                        color: Colors.green,
+                        startWidth: 10,
+                        endWidth: 10,
+                      ),
+                    ],
                     pointers: <GaugePointer>[
-                      NeedlePointer(value: _pointerValue), // Mutató értéke
+                      NeedlePointer(value: _pointerValue),
                     ],
                     annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
                         widget: Text(
                           _pointerValue.toStringAsFixed(0),
                           style: const TextStyle(
-                            fontSize: 20,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -72,6 +101,7 @@ class _FunOMeterState extends State<FunOMeter> {
                 min: 0,
                 max: 100,
                 divisions: 100,
+                activeColor: Colors.orange,
                 label: _pointerValue.toStringAsFixed(0),
                 onChanged: (value) {
                   setState(() {
