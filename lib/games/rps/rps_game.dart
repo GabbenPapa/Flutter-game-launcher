@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../providers/game_provider.dart';
+import '../../theme/themes.dart';
 
 class RpsGameScreen extends StatefulWidget {
   static const routeName = '/rps_game';
@@ -60,18 +61,16 @@ class _RpsGameScreenState extends State<RpsGameScreen> {
       listen: false,
     ).findById(gameId);
 
+    final theme = Theme.of(context);
+    final customTheme = theme.extension<CustomThemeExtension>();
+
     return Scaffold(
       appBar: AppBar(title: Text(loadedGames.title)),
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.red, Colors.purple],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.0, 1.0],
-              ),
+            decoration: BoxDecoration(
+              gradient: customTheme?.backgroundGradient,
             ),
           ),
           Column(
@@ -99,7 +98,8 @@ class _RpsGameScreenState extends State<RpsGameScreen> {
                                 decoration: BoxDecoration(
                                   border: isSelected
                                       ? Border.all(
-                                          color: Colors.green,
+                                          color: customTheme?.selectedColor ??
+                                              Colors.grey,
                                           width: 4,
                                         )
                                       : null,
