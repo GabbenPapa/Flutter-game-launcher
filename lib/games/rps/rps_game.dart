@@ -28,19 +28,14 @@ class _RpsGameScreenState extends State<RpsGameScreen> {
   Map<String, String>? computerChoice;
   String resultMessage = '';
 
-  Future<void> playGame(String choice) async {
-    setState(() => _isRunning = true);
-    for (int i = 0; i < 10; i++) {
-      await Future.delayed(const Duration(milliseconds: 100));
-      setState(() {
-        playerChoice = choice;
-        computerChoice = choices[Random().nextInt(choices.length)];
-        setState(() {
-          resultMessage = getResult(playerChoice!, computerChoice!['name']!);
-        });
-      });
-    }
-    setState(() => _isRunning = false);
+  void playGame(String choice) {
+    setState(() {
+      _isRunning = true;
+      playerChoice = choice;
+      computerChoice = choices[Random().nextInt(choices.length)];
+      resultMessage = getResult(playerChoice!, computerChoice!['name']!);
+      _isRunning = false;
+    });
   }
 
   String getResult(String player, String computer) {
